@@ -13,7 +13,7 @@ coverage:
         if_ci_failed: error
 ignore:
   - "cmd"
-  - "examples"
+  - "examples/**/*"
   - "**/*.pb.go"
   - "**/zz_generated.*.go"
   - "tests/internal/envtest.go"
