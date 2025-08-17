@@ -367,7 +367,7 @@ func handleFinalizer[objType client.Object](
 	if o.GetDeletionTimestamp().IsZero() {
 		if !ctrlutil.ContainsFinalizer(o, aiGatewayControllerFinalizer) {
 			ctrlutil.AddFinalizer(o, aiGatewayControllerFinalizer)
-			if err := c.Patch(ctx, o, client.Apply, nil); err != nil {
+			if err := c.Patch(ctx, o, client.Apply); err != nil {
 				// This shouldn't happen in normal operation, but if it does, we log the error.
 				logger.Error(err, "Failed to add finalizer to object",
 					"namespace", o.GetNamespace(), "name", o.GetName())
@@ -384,7 +384,7 @@ func handleFinalizer[objType client.Object](
 					"namespace", o.GetNamespace(), "name", o.GetName())
 			}
 		}
-		if err := c.Patch(ctx, o, client.Apply, nil); err != nil {
+		if err := c.Patch(ctx, o, client.Apply); err != nil {
 			// This shouldn't happen in normal operation, but if it does, we log the error.
 			logger.Error(err, "Failed to remove finalizer from object",
 				"namespace", o.GetNamespace(), "name", o.GetName())
