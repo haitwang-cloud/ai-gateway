@@ -115,7 +115,7 @@ func requireNewFakeClientWithIndexes(t *testing.T) client.Client {
 		return nil
 	})
 	require.NoError(t, err)
-	return builder.Build()
+	return &mockClient{Client: builder.Build()}
 }
 
 func TestAIGatewayRouterController_syncAIGatewayRoute(t *testing.T) {

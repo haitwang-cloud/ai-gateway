@@ -268,9 +268,12 @@ type mockClient struct {
 }
 
 // Patch overrides [client.Client.Patch] to simulate patching behavior in tests.
-func (m *mockClient) Patch(context.Context, client.Object, client.Patch, ...client.PatchOption) error {
+func (m *mockClient) Patch(ctx context.Context, o client.Object, p client.Patch, _ ...client.PatchOption) error {
 	if m.patchErr {
 		return fmt.Errorf("mock update error")
+	}
+	if m.Client != nil {
+		return m.Update(ctx, o)
 	}
 	return nil
 }
