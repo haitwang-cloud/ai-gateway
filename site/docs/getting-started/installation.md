@@ -45,8 +45,6 @@ helm upgrade -i aieg oci://docker.io/envoyproxy/ai-gateway-helm \
     --skip-crds
 ```
 
-> If you are experiencing network issues with `docker.io` , you can follow the [Install from Source Code](https://github.com/envoyproxy/gateway/tree/main/charts/gateway-helm#install-from-source-code) instructions.
-
 ## Configuring Envoy Gateway
 
 After installing Envoy AI Gateway, apply the AI Gateway-specific configuration to Envoy Gateway, restart the deployment, and wait for it to be ready:
