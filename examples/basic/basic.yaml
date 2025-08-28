@@ -104,12 +104,25 @@ spec:
           env:
             - name: TESTUPSTREAM_ID
               value: test
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
           readinessProbe:
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 1
-            periodSeconds: 1
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
